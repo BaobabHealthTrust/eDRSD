@@ -73,7 +73,7 @@
                 </td>
                 <th class="field_num">4</th><th><span class="required">*</span>Sex:</th>
                 <td>
-                  <select name='gender' id='gender'>
+                  <select name='gender' id='gender' onchange="checkGender(this);">
                     <option>&nbsp;</option>
                     <option value="Female">Female</option>
                     <option value="Male">Male</option>
@@ -86,12 +86,13 @@
                   <input  onkeypress="return false;" class="text-boxes" 
                   type='text' id="dob" name="dob" data-date-format="dd/mm//yyyy" />
                 </td>
-                <td>
+                <!--td>
                   <select name='etimate_dob' id='etimate_dob'>
                     <option>&nbsp;</option>
-                    <option value="Female">Unknown</option>
+                    <option value="estimate_yes">Yes</option>
+                    <option value="estimate_no">No</option>
                   </select>
-                </td>
+                </td-->
                 <th class="field_num">6</th><th colspan="4">Birth Certificate No.</th>
               </tr>
               <tr>
@@ -100,8 +101,8 @@
                   <input  onkeypress="return false;" class="text-boxes" 
                   type='text' id="dod" name="dod" data-date-format="dd/mm//yyyy" />
                 </td>
-                <td colspan="2">&nbsp;</td>
-                <td colspan="4"><input class="text-boxes" type='text' name='birth_certificate_num' id='birth_certificate_num' /></td>
+                <td>&nbsp;</td>
+                <td colspan="6"><input class="text-boxes" type='text' name='birth_certificate_num' id='birth_certificate_num' /></td>
               </tr>
               <tr>
                 <th class="field_num">8</th>
@@ -207,7 +208,7 @@
                   while pregnant, at the time of delivery or within 6 weeks after the end of pregnancy?
                 </td>
                 <td>
-                  <select name='etimate_dob' id='etimate_dob'>
+                  <select name='pregnant' id='pregnant' disabled>
                     <option>&nbsp;</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -466,6 +467,13 @@ function removeOptions(selectbox) {
   }
 }
 
+function checkGender(e) {
+  if(e.value == 'Female') {
+    document.getElementById('pregnant').removeAttribute('disabled');
+  }else{
+    document.getElementById('pregnant').setAttribute('disabled','disabled');
+  }
+}
 
 activeDate();
 
