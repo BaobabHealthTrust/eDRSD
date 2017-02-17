@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   ######################## PEOPLE CONTROLLER ########################################
   get '/registration' => 'people#new'
+  get 'fetch_data/:indicator/:indicator_id' => 'people#fetch_data'
   ###########################################################################
 
   # The priority is based upon order of creation: first created -> highest priority.

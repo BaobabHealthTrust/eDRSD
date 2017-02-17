@@ -25,6 +25,17 @@
   text-align: center;
 }
 
+.primary_btns {
+  float: right;
+  margin-right: 10px;
+  width: 150px;
+}
+
+.required {
+  color: red;
+  font-weight: bold;
+}
+
 </style>
 
 
@@ -38,8 +49,8 @@
       <table id="part_one">
         <tr>
           <th>Part 1</th><th class="field_num">1</th>
-          <th>Surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
-          <th>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+          <th><span class="required">*</span>Surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
+          <th><span class="required">*</span>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
           <th>Other names</th><td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
         </tr>
         <tr>
@@ -51,9 +62,16 @@
               <tr>
                 <th class="field_num">2</th>
                 <th>ID No.</th><td><input class="text-boxes" type='text' name='id_number' id='id_number' /></td>
-                <th class="field_num">3</th><th>Nationality</th>
-                <td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
-                <th class="field_num">4</th><th>Sex:</th>
+                <th class="field_num">3</th><th><span class="required">*</span>Nationality</th>
+                <td>
+                  <select name='nationality' id='nationality'>
+                    <option>&nbsp;</option>
+                    <%(@nationalities || []).each do |n|%>
+                      <option value="<%=n.id%>"><%=n.nationality%></option>
+                    <%end%>
+                  </select>
+                </td>
+                <th class="field_num">4</th><th><span class="required">*</span>Sex:</th>
                 <td>
                   <select name='gender' id='gender'>
                     <option>&nbsp;</option>
@@ -63,7 +81,7 @@
                 </td>
               </tr>
               <tr>
-                <th class="field_num">5</th><th>Date of birth:</th>
+                <th class="field_num">5</th><th><span class="required">*</span>Date of birth:</th>
                 <td>
                   <input  onkeypress="return false;" class="text-boxes" 
                   type='text' id="dob" name="dob" data-date-format="dd/mm//yyyy" />
@@ -77,7 +95,7 @@
                 <th class="field_num">6</th><th colspan="4">Birth Certificate No.</th>
               </tr>
               <tr>
-                <th class="field_num">7</th><th>Date of death:</th>
+                <th class="field_num">7</th><th><span class="required">*</span>Date of death:</th>
                 <td>
                   <input  onkeypress="return false;" class="text-boxes" 
                   type='text' id="dod" name="dod" data-date-format="dd/mm//yyyy" />
@@ -87,52 +105,61 @@
               </tr>
               <tr>
                 <th class="field_num">8</th>
-                <td colspan="8">Place of death (Tick the appropriate option)</td>
+                <td colspan="8"><span class="required">*</span>Place of death (Tick the appropriate option)</td>
               </tr>
               <tr>
                 <th>&nbsp;</th>
-                <td class="radio_btn_container"><input type="radio" name="place_of_death" /></td>
+                <td class="radio_btn_container"><input type="radio" id="facility"
+                  name="place_of_death" onchange="enablePlaceOfDeath(this)"/></td>
                 <th>Health facility</td>
                 <td colspan="6">
-                  <select name='etimate_dob' id='etimate_dob'>
+                  <select name='death_facility' id='death_facility' disabled>
                     <option>&nbsp;</option>
+                    <%(@health_facilities || []).each do |h|%>
+                      <option value="<%=h.id%>"><%=h.name%></option>
+                    <%end%>
                   </select>
                 </td>
               </tr>
               <tr>
                 <th>&nbsp;</th>
-                <td class="radio_btn_container"><input type="radio" name="place_of_death" /></td>
+                <td class="radio_btn_container"><input type="radio" name="place_of_death" id='home'
+                    onchange="enablePlaceOfDeath(this)"/></td>
                 <th>Home</td>
                 <th>District:</th>
                 <td>
-                  <select name='etimate_dob' id='etimate_dob'>
+                  <select name='death_district' id='death_district' onchange="fetchTAs();" disabled>
                     <option>&nbsp;</option>
+                    <%(@districts || []).each do |d|%>
+                      <option value="<%=d.id%>"><%=d.name%></option>
+                    <%end%>
                   </select>
                 </td>
                 <th>TA:</th>
                 <td>
-                  <select name='etimate_dob' id='etimate_dob'>
+                  <select name='death_tas' id='death_tas' onchange="fetchVillages();" disabled>
                     <option>&nbsp;</option>
                   </select>
                 </td>
                 <th>Village:</th>
                 <td>
-                  <select name='etimate_dob' id='etimate_dob'>
+                  <select name='death_villages' id='death_villages' disabled>
                     <option>&nbsp;</option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <th>&nbsp;</th>
-                <td class="radio_btn_container"><input type="radio" name="place_of_death" /></td>
+                <td class="radio_btn_container"><input type="radio" name="place_of_death" id="other" 
+                  onchange="enablePlaceOfDeath(this)"/></td>
                 <th>Other (Give details)</td>
                 <td colspan="6">
-                  <input class="text-boxes" type='text' name='place_of_death_text' id='place_of_death_text' />
+                  <input class="text-boxes" type='text' name='place_of_death_text' id='place_of_death_text' disabled />
                 </td>
               </tr>
               <tr>
                 <th class="field_num">9</th>
-                <th colspan="2">Physical residential address:</td>
+                <th colspan="2"><span class="required">*</span>Physical residential address:</td>
                 <th>District:</th>
                 <td>
                   <select name='etimate_dob' id='etimate_dob'>
@@ -226,8 +253,10 @@
             <table id="person_details">
               <tr>
                 <th class="field_num">1</th>
-                <th>Name:&nbsp;surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
-                <th>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+                <th><span class="required">*</span>
+                Name:&nbsp;surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
+                <th><span class="required">*</span>
+                First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
                 <th>Other names</th><td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
                 <th class="field_num">2</th>
                 <th>ID No.</th>
@@ -235,7 +264,7 @@
               </tr>
               <tr>
                 <th class="field_num">3</th>
-                <th>Relationship to the deceased</th>
+                <th><span class="required">*</span>Relationship to the deceased</th>
                 <td colspan="8">
                   <select name='etimate_dob' id='etimate_dob'>
                     <option>&nbsp;</option>
@@ -270,9 +299,9 @@
                         </td>
                       </tr>
                       <tr>
-                        <th>Postal address</th>
+                        <th><span class="required">*</span>Postal address</th>
                         <td colspan="3"><input class="text-boxes" type='text' name='postal_add' id='postal_add' /></td>
-                        <th>Telphone number</th>
+                        <th><span class="required">*</span>Telphone number</th>
                         <td><input class="text-boxes" type='text' name='tel_phone_num' id='tel_phone_num' /></td>
                       </tr>
                    </table>
@@ -291,12 +320,12 @@
                       </td>
                     </tr>
                     <tr>
-                      <th>Date:</th>
+                      <th><span class="required">*</span>Date:</th>
                       <td>
                         <input  onkeypress="return false;" class="text-boxes" 
                         type='text' id="signature_date" name="signature_date" data-date-format="dd/mm//yyyy" />
                       </td>
-                      <th>Signature/Thump mark of Informant:</th>
+                      <th><span class="required">*</span>Signature/Thump mark of Informant:</th>
                       <td>
                         <select name='etimate_dob' id='etimate_dob'>
                           <option>&nbsp;</option>
@@ -312,6 +341,15 @@
           </td>
         </tr>
 
+        <tr>
+          <td colspan="9">&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td colspan="6">&nbsp;</td>
+          <td><button class="primary_btns btn btn-danger">Cancel</button></td>
+          <td><button class="primary_btns btn btn-primary">Register</button></td>
+        </tr>
       </table>
 
 
@@ -323,6 +361,29 @@
 
 <script>
 
+
+function enablePlaceOfDeath(e) {
+  if(e.id == 'facility'){
+    document.getElementById('death_facility').removeAttribute("disabled")
+    document.getElementById('place_of_death_text').setAttribute('disabled','disabled');
+    document.getElementById('death_district').setAttribute('disabled','disabled');
+    document.getElementById('death_tas').setAttribute('disabled','disabled');
+    document.getElementById('death_villages').setAttribute('disabled','disabled');
+  }else if(e.id == 'home'){
+    document.getElementById('place_of_death_text').setAttribute('disabled','disabled');
+    document.getElementById('death_facility').setAttribute("disabled","disabled")
+    document.getElementById('death_district').removeAttribute('disabled','disabled');
+    document.getElementById('death_tas').removeAttribute('disabled','disabled');
+    document.getElementById('death_villages').removeAttribute('disabled','disabled');
+  }else if(e.id == 'other'){
+    document.getElementById('place_of_death_text').removeAttribute('disabled');
+    document.getElementById('death_facility').setAttribute("disabled","disabled")
+    document.getElementById('death_district').setAttribute('disabled','disabled');
+    document.getElementById('death_tas').setAttribute('disabled','disabled');
+    document.getElementById('death_villages').setAttribute('disabled','disabled');
+  }
+}
+
 function activeDate() {
   $(function() {
     $( "#dob" ).datepicker({ dateFormat: 'dd/mm/yy' });
@@ -331,6 +392,79 @@ function activeDate() {
   });
 }
 
+function fetchTAs() {
+  district_id = document.getElementById('death_district').value;
+  if (district_id.length < 1)
+    return;
+
+  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari  
+    xmlhttp=new XMLHttpRequest();                                             
+  }else{// code for IE6, IE5                                                  
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");                           
+  }                                                                           
+  xmlhttp.onreadystatechange=function() {                                     
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {                       
+      var results = xmlhttp.responseText;                                     
+      if(results == 'undefined' || results == '' || results == '"not validate"') {                           
+        return;                                                               
+      }else{            
+        e = document.getElementById('death_tas');
+        removeOptions(e);                                                      
+        addOptions(e, results);                                                           
+      }                                                                       
+    }                                                                         
+  }                                                                           
+  xmlhttp.open("GET","/fetch_data/district/" + district_id, true);           
+  xmlhttp.send();
+}
+
+function fetchVillages() {
+  ta_id = document.getElementById('death_tas').value;
+  if (ta_id.length < 1)
+    return;
+
+  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari  
+    xmlhttp=new XMLHttpRequest();                                             
+  }else{// code for IE6, IE5                                                  
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");                           
+  }                                                                           
+  xmlhttp.onreadystatechange=function() {                                     
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {                       
+      var results = xmlhttp.responseText;                                     
+      if(results == 'undefined' || results == '' || results == '"not validate"') {                           
+        return;                                                               
+      }else{            
+        e = document.getElementById('death_villages');
+        removeOptions(e);                                                      
+        addOptions(e, results);                                                           
+      }                                                                       
+    }                                                                         
+  }                                                                           
+  xmlhttp.open("GET","/fetch_data/villages/" + ta_id, true);           
+  xmlhttp.send();
+}
+
+function addOptions(e, data) {
+  data = JSON.parse(data);
+  counter = 0;
+  op = document.createElement('option');
+  e.appendChild(op);
+
+  for (var i = 0; i < data.length; i++) {
+    op = document.createElement('option');
+    op.setAttribute('value',data[i]['id']);
+    op.innerHTML = data[i]['name'];
+    e.appendChild(op);
+  }
+
+}
+
+function removeOptions(selectbox) {
+  var i;
+  for(i = selectbox.options.length - 1 ; i >= 0 ; i--) {
+    selectbox.remove(i);
+  }
+}
 
 
 activeDate();

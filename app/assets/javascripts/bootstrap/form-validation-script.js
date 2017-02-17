@@ -13,24 +13,7 @@ var Script = function () {
             rules: {
                 last_name: {
                     required: true,
-                    minlength: 6,
-                    maxlength: 24
-                },
-                first_name: {
-                    required: true,
-                    minlength: 6,
-                    maxlength: 24
-                },
-                middle_name: {
-                    required: true,
-                    minlength: 6,
-                    maxlength: 24
-                },
-                gender: {
-                    required: true
-                },
-                dob: {
-                    required: true
+                    minlength: 6
                 },
                 address: {
                     required: true,
@@ -61,24 +44,9 @@ var Script = function () {
             },
             messages: {                
                 last_name: {
-                    required: "Please enter a Last name.",
-                    minlength: "Your Last name must consist of at least 6 characters long."
-                },
-                first_name: {
-                    required: "Please enter a First name.",
-                    minlength: "Your First Name must consist of at least 6 characters long."
-                },
-                middle_name: {
-                    required: "Please enter a Middle name.",
+                    required: "Please enter a Last Name.",
                     minlength: "Your Last Name must consist of at least 6 characters long."
                 },
-                gender: {
-                    required: "Please select gender."
-                },
-                dob: {
-                    required: "Please enter/select a date of birth."
-                },
-                gender: {
                 address: {
                     required: "Please enter a Address.",
                     minlength: "Your Address must consist of at least 10 characters long."
@@ -107,7 +75,7 @@ var Script = function () {
             var lastname = $("#lastname").val();
             if(firstname && lastname && !this.value) {
                 this.value = firstname + "." + lastname;
-        ax}
+            }
         });
 
         //code to hide topic selection, disable for demo
