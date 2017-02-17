@@ -1,0 +1,338 @@
+<style>
+#part_one {
+  width: 100%;
+}
+
+#part_one th, td {
+  border-style: solid;
+  border-width: 1px;
+  padding-left: 5px;
+}
+
+#person_details {
+  width: 100%;
+}
+
+.text-boxes {
+  width: 99%;
+}
+
+.field_num {
+  width: 25px !important;
+}
+
+.radio_btn_container {
+  text-align: center;
+}
+
+</style>
+
+
+<div class="col-lg-12">
+  <section class="panel">
+    <header class="panel-heading">Section one (deceased demographics)</header>
+    <div class="panel-body">
+    
+   
+
+      <table id="part_one">
+        <tr>
+          <th>Part 1</th><th class="field_num">1</th>
+          <th>Surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
+          <th>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+          <th>Other names</th><td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+        </tr>
+        <tr>
+          <th>Personal <br />details of<br />Deceased</th>
+          <td colspan='7'>
+          
+
+            <table id="person_details">
+              <tr>
+                <th class="field_num">2</th>
+                <th>ID No.</th><td><input class="text-boxes" type='text' name='id_number' id='id_number' /></td>
+                <th class="field_num">3</th><th>Nationality</th>
+                <td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+                <th class="field_num">4</th><th>Sex:</th>
+                <td>
+                  <select name='gender' id='gender'>
+                    <option>&nbsp;</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="field_num">5</th><th>Date of birth:</th>
+                <td>
+                  <input  onkeypress="return false;" class="text-boxes" 
+                  type='text' id="dob" name="dob" data-date-format="dd/mm//yyyy" />
+                </td>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                    <option value="Female">Unknown</option>
+                  </select>
+                </td>
+                <th class="field_num">6</th><th colspan="4">Birth Certificate No.</th>
+              </tr>
+              <tr>
+                <th class="field_num">7</th><th>Date of death:</th>
+                <td>
+                  <input  onkeypress="return false;" class="text-boxes" 
+                  type='text' id="dod" name="dod" data-date-format="dd/mm//yyyy" />
+                </td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="4"><input class="text-boxes" type='text' name='birth_certificate_num' id='birth_certificate_num' /></td>
+              </tr>
+              <tr>
+                <th class="field_num">8</th>
+                <td colspan="8">Place of death (Tick the appropriate option)</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td class="radio_btn_container"><input type="radio" name="place_of_death" /></td>
+                <th>Health facility</td>
+                <td colspan="6">
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td class="radio_btn_container"><input type="radio" name="place_of_death" /></td>
+                <th>Home</td>
+                <th>District:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+                <th>TA:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+                <th>Village:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td class="radio_btn_container"><input type="radio" name="place_of_death" /></td>
+                <th>Other (Give details)</td>
+                <td colspan="6">
+                  <input class="text-boxes" type='text' name='place_of_death_text' id='place_of_death_text' />
+                </td>
+              </tr>
+              <tr>
+                <th class="field_num">9</th>
+                <th colspan="2">Physical residential address:</td>
+                <th>District:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+                <th>TA:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+                <th>Village:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="field_num">10</th>
+                <th colspan="2">Home address:</td>
+                <th>District:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+                <th>TA:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+                <th>Village:</th>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="field_num">11</th>
+                <td colspan="7">In case this is a Female death, did the death occur 
+                  while pregnant, at the time of delivery or within 6 weeks after the end of pregnancy?
+                </td>
+                <td>
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+          
+          </td>
+        </tr>
+        
+
+        <tr>
+          <th>Part 2<br />Details of<br />Parents</th>
+          <td colspan="7">
+            <table id="person_details">
+              <tr>
+                <th class="field_num">1</th>
+                <th>Mother's surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
+                <th>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+                <th>Other names</th><td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+                <th class="field_num">2</th>
+                <th>ID No.</th>
+                <td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+              </tr>
+              <tr>
+                <th class="field_num">3</th>
+                <th>Father's surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
+                <th>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+                <th>Other names</th><td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+                <th class="field_num">4</th>
+                <th>ID No.</th>
+                <td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Part 3<br />Informant's<br />Details</th>
+          <td colspan="7">
+            <table id="person_details">
+              <tr>
+                <th class="field_num">1</th>
+                <th>Name:&nbsp;surname</th><td><input class="text-boxes" type='text' name='last_name' id='last_name' /></td>
+                <th>First name</th><td><input class="text-boxes" type='text' name='first_name' id='first_name' /></td>
+                <th>Other names</th><td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+                <th class="field_num">2</th>
+                <th>ID No.</th>
+                <td><input class="text-boxes" type='text' name='middle_name' id='middle_name' /></td>
+              </tr>
+              <tr>
+                <th class="field_num">3</th>
+                <th>Relationship to the deceased</th>
+                <td colspan="8">
+                  <select name='etimate_dob' id='etimate_dob'>
+                    <option>&nbsp;</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th class="field_num">4</th>
+                <td colspan="9">
+                 
+                   <table id="person_details">
+                      <tr>
+                        <th>District:</th>
+                        <td>
+                          <select name='etimate_dob' id='etimate_dob'>
+                            <option>&nbsp;</option>
+                          </select>
+                        </td>
+                        <th>TA:</th>
+                        <td>
+                          <select name='etimate_dob' id='etimate_dob'>
+                            <option>&nbsp;</option>
+                          </select>
+                        </td>
+                        <th>Village:</th>
+                        <td>
+                          <select name='etimate_dob' id='etimate_dob'>
+                            <option>&nbsp;</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Postal address</th>
+                        <td colspan="3"><input class="text-boxes" type='text' name='postal_add' id='postal_add' /></td>
+                        <th>Telphone number</th>
+                        <td><input class="text-boxes" type='text' name='tel_phone_num' id='tel_phone_num' /></td>
+                      </tr>
+                   </table>
+                      
+                </td>
+              </tr>
+              <tr>
+                <th class="field_num">5</th>
+                <th colspan="9">
+                  <table id="person_details">
+                    <tr>
+                      <td colspan="4">
+                        I certify that the above information is correct and I am aware 
+                        that I could face criminal prosecution if this information is 
+                        incorrect in material respct
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Date:</th>
+                      <td>
+                        <input  onkeypress="return false;" class="text-boxes" 
+                        type='text' id="signature_date" name="signature_date" data-date-format="dd/mm//yyyy" />
+                      </td>
+                      <th>Signature/Thump mark of Informant:</th>
+                      <td>
+                        <select name='etimate_dob' id='etimate_dob'>
+                          <option>&nbsp;</option>
+                          <option value="available">Available</option>
+                          <option value="Not available">Not vailable</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </table>
+                </th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+
+
+   </div> 
+  </section>
+</div>
+
+
+<script>
+
+function activeDate() {
+  $(function() {
+    $( "#dob" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $( "#dod" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    $( "#signature_date" ).datepicker({ dateFormat: 'dd/mm/yy' });
+  });
+}
+
+
+
+activeDate();
+
+</script>

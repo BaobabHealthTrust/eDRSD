@@ -1,0 +1,210 @@
+
+<style>
+.allergies_list {
+  display: table;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+  width: 100%;
+  color: white;
+}
+
+.reaction {
+  color: tomato;
+}
+
+.allergies_list li {
+  word-wrap: break-word;
+  width: 80%;
+}
+
+#table-container {
+  display: table;
+  width: 100%;
+}
+
+#row  {
+  display: table-row;
+}
+
+#left, #right, #middle {
+  display: table-cell;
+}
+
+#table-container div {
+  vertical-align: middle;
+  width: 100%;
+}
+
+
+.divbtn {
+  height: 200px;
+  display: table;
+  margin-top: 10px;
+  cursor:pointer;
+  box-shadow: 10px 10px 5px #888888;
+  text-align: center;
+}
+
+
+.vitals {
+  font-size: 15px;
+  color: white;
+}
+
+.tresults {
+  width: 100%;
+}
+
+
+.tresults td {
+  padding: 5px;
+  font-size: 13px;
+}
+
+.tname {
+  text-align: right;
+  width:285px;
+}
+
+.tdata {
+  text-align: left;
+  font-weight: bolder;
+}
+
+.title {
+  color: white;
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.tresults-2 {
+  width: 100%;
+}
+
+
+.tresults-2 td {
+  padding: 5px;
+  font-size: 13px;
+}
+
+.tresults-2 .tname {
+  text-align: right;
+  width:145px;
+}
+
+.icons {
+  width: 120px;
+  height: 120px;
+  margin-top: 10%;
+  text-align: middle;
+}
+
+.divbtn p {
+  font-weight: bold;
+}
+
+</style>
+
+  
+  
+  
+<div id="table-container">
+  <div id="row">
+
+    <div id="left" style="width: 20%;">
+      <div class="divbtn vitals" style="background-color: white;border: 1px solid #2e6da4; width: 99%;" onclick="javascript:showInFull('registration');" >
+          <!-- loop -->
+          <span class="icons">
+            <%=image_tag("icons/register.png", class: 'icons')%>
+            <p style="color: black;">Register a new record</p>
+          </span>
+          <!-- endloop -->
+      </div>
+    </div>
+
+    <div id="middle" style="width: 20%;">
+      <div class="divbtn" style="background-color:white;border: 1px solid #2e6da4; width: 99%;" onclick="javascript:showInFull('search-person');" >
+          <!-- loop -->
+          <span class="icons">
+            <%=image_tag("icons/search.png", class: 'icons')%>
+            <p style="color:black;">Search for a record</p>
+          </span>
+          <!-- endloop -->
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <div id="row">
+
+    <div id="right" style="width: 20%;">
+      <div class="divbtn" style="background-color:white;border: 1px solid #2e6da4; width: 99%;" onclick="javascript:showInFull('telemedicine');">
+        <!-- loop -->
+          <span class="icons">
+            <%=image_tag("icons/config-users.png", class: 'icons')%>
+            <p style="color:black;">Manage users</p>
+          </span>
+        <!-- loop end -->
+      </div>
+    </div>
+
+    <div id="right" style="width: 20%;">
+      <div class="divbtn" style="background-color:white;border: 1px solid #2e6da4; width: 99%;" onclick="javascript:showInFull('telemedicine');">
+        <!-- loop -->
+          <span class="icons">
+            <%=image_tag("icons/ducumentation.png", class: 'icons')%>
+            <p style="color:black;">System ducumentation</p>
+          </span>
+        <!-- loop end -->
+      </div>
+    </div>
+    
+
+  </div>
+
+
+</div>
+
+
+
+<script>
+
+function showInFull(indicator) {
+  switch(indicator) {
+    case 'cases':
+      document.location = "/tasks";
+      return;
+    case 'registration':
+      document.location = "/registration";
+      return;
+    case 'active-patient-visit':
+      document.location = "/active_visits";
+      return;
+    case 'appointments':
+      document.location = "/appointment_scheduling/local booking";
+      return;
+    case 'admit':
+      document.location = "/search/admitted patient list";
+      return;
+    case 'billing':
+      document.location = "/billing";
+      return;
+    case 'dispensary':
+      document.location = "/search/dispensary";
+      return;
+    case 'reports':
+      document.location = "/report/general";
+      return;
+  }
+  //notifyPopUp(indicator);
+}
+
+function notifyPopUp(msg) {
+  bootbox.alert("Sorry you are not authorised to view: " + msg, function() {});
+}
+
+</script>

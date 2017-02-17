@@ -1,0 +1,32 @@
+
+<div class="row">
+  <%= render :partial => 'people/registration/part_one'%>
+</div>
+
+<div class="row">
+  <%#= render :partial => 'people/registration/addresses'%>
+</div>
+
+<div class="row">
+</div>
+
+
+
+<%= javascript_include_tag 'bootstrap/jquery.validate.min' %>
+<!-- custom form validation script for this page-->
+<%= javascript_include_tag 'bootstrap/form-validation-script' %>
+
+<%=stylesheet_link_tag "datepicker/datepicker" %>
+<%=javascript_include_tag "datepicker/bootstrap-datepicker" %>
+
+<script>
+
+function activeDate() {
+  $(function() {
+    $( "#birthdate" ).datepicker({ dateFormat: 'dd/mm/yy' });
+  });
+}
+
+
+activeDate();
+</script>
